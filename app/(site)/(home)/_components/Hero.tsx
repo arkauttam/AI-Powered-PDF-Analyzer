@@ -11,13 +11,21 @@ export default function Hero({
     isResume,
     setIsResume,
     isAnalyzing,
+    jobDesc,
+    setJobDesc,
+    heading,
+    subheading
 }: {
+    heading: string;
+    subheading: string;
     analyze: () => void;
     resumeText: string;
     setResumeText: (text: string) => void;
     isResume: boolean;
     setIsResume: (isResume: boolean) => void;
     isAnalyzing: boolean;
+    jobDesc: string;
+    setJobDesc: (job: string) => void;
 }) {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -61,6 +69,7 @@ export default function Hero({
                                     selectedFile={selectedFile}
                                     setSelectedFile={setSelectedFile}
                                     isAnalyzing={isAnalyzing}
+                                    setJobDesc={setJobDesc}
                                 />
                             </PopoverContent>
                         </Popover>
@@ -94,8 +103,8 @@ export default function Hero({
                     <div className="book-container">
                         <div className="book">
                             <div className="book-cover">
-                                <h3 className="book-title">The Psychology of Money</h3>
-                                <p className="book-author">Morgan Housel</p>
+                                <h3 className="book-title">{heading || "The Psychology of Money"}</h3>
+                                <p className="book-author">{subheading || "Morgan Housel"}</p>
                             </div>
                             <div className="book-spine"></div>
                         </div>

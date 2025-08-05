@@ -5,20 +5,41 @@ import { useState } from "react";
 
 export default function ResumeUpload({
   onExtracted,
+  setJobDesc,
   analyze,
   selectedFile,
   setSelectedFile,
   isAnalyzing
 }: {
   onExtracted: (text: string) => void;
+  setJobDesc: (job: string) => void;
   analyze: () => void;
   selectedFile: File | null;
   setSelectedFile: (file: File | null) => void;
   isAnalyzing: boolean;
-
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
+
+  const extractJobDescription = (text: string): string => {
+    // Simple keyword-based extraction for job description
+    const jobKeywords = ["job description", "position", "role", "title", "career objective"];
+    const lines = text.split('\n');
+    for (const line of lines) {
+      const lowerLine = line.toLowerCase();
+      if (jobKeywords.some(keyword => lowerLine.includes(keyword))) {
+        return line.trim();
+      }
+    }
+    // Fallback to common job titles or first line if no keywords found
+    const commonJobTitles = ["developer", "engineer", "manager", "analyst", "designer"];
+    for (const line of lines) {
+      if (commonJobTitles.some(title => line.toLowerCase().includes(title))) {
+        return line.trim();
+      }
+    }
+    return lines[0]?.trim() || "Unknown Job Description";
+  };
 
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -39,6 +60,8 @@ export default function ResumeUpload({
       const data = await res.json();
       if (data?.text) {
         onExtracted(data.text);
+        const jobDescription = extractJobDescription(data.text);
+        setJobDesc(jobDescription);
         setIsUploaded(true);
       } else {
         console.error("Upload failed:", data);
@@ -60,15 +83,16 @@ export default function ResumeUpload({
     setSelectedFile(null);
     setIsUploaded(false);
     onExtracted("");
+    setJobDesc("");
   };
 
   return (
     <>
       <h3 className="text-xl font-bold font-heading text-foreground mb-2">
-        Upload Your Book PDF
+        Upload Your Resume or Document PDF
       </h3>
       <p className="text-sm text-muted-foreground mb-4">
-        Upload a PDF to get instant summaries and insights with BookAI Pro.
+        Upload a PDF to get instant analysis or summaries with AI assistance.
       </p>
       <div className="flex flex-col items-center justify-center border-2 border-dashed border-border/50 rounded-xl p-4 mb-4">
         <Upload className="w-8 h-8 text-primary mb-2" />

@@ -20,16 +20,21 @@ The format should be:
 {
   "heading": "Candidate's full name",
   "subheading": "Candidate's profession or job title",
+  "summary": "Short 2-3 sentence overview of the candidate's background and expertise",
   "score": number between 0 and 100,
-  "improvements": [ "tip1", "tip2", ... ],
-  "improvedResume": "Improved resume text"
+  "improvements": [ "tip1", "tip2","tip3", "tip4","tip5",... ],
+  "improvedResume": "Improved resume text",
+  "jobOpportunities": ["Job Title 1", "Job Title 2", "Job Title 3", ...]
 }
 
 Analyze the resume based on alignment of projects and skills with both the job description and the candidate's profession (subheading).
-Provide a score (0-100) reflecting how well the candidate's projects and skills match the job requirements and their stated profession.
-List at least 3 specific improvements focusing on enhancing project descriptions and skill relevance, tailored to both the job description and the candidate's profession.
-Extract the candidate's full name for the heading and their profession or job title for the subheading from the resume text. If name or profession cannot be determined, use "Unknown Candidate" and "Unknown Profession" respectively.
+Provide:
+- A short summary describing the candidate's main background, skills, and career focus.
+- A score (0-100) reflecting how well the candidate's projects and skills match the job requirements and their stated profession.
+- At least 5 specific improvements focusing on enhancing project descriptions and skill relevance, tailored to both the job description and the candidate's profession.
+- A list of at least 3 job opportunities (titles) that match the candidate's skills and career background.
 
+Extract the candidate's full name for the heading and their profession or job title for the subheading from the resume text. If name or profession cannot be determined, use "Unknown Candidate" and "Unknown Profession" respectively.
 
 Resume text:
 ${text}
@@ -42,7 +47,7 @@ ${jobDesc}
     prompt = `
 You are a document summarization assistant.
 Summarize the document in a concise paragraph under a "Summary" section.
-List 5 key takeaways under a "Key Takeaways" section.
+at least 5 key takeaways under a "Key Takeaways" section.
 Include at least 5 notable quotes under a "Notable Quotes" section with a subheading "Significant Statements".
 Extract the document title for the heading and a relevant subheading (e.g., a subtitle or key theme) from the document text. If the title or subheading cannot be determined, use "Untitled Document" and "General Overview" respectively.
 

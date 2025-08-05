@@ -16,12 +16,14 @@ export default function Home() {
   const [theme, setTheme] = useState('dark');
   const [resumeText, setResumeText] = useState("");
   const [isResume, setIsResume] = useState(false);
+  const [jobDesc, setJobDesc] = useState("");
   const [score, setScore] = useState<number | null>(null);
   const [improvements, setImprovements] = useState<string[]>([]);
   const [improvedResume, setImprovedResume] = useState("");
   const [summary, setSummary] = useState("");
   const [keyTakeaways, setKeyTakeaways] = useState<string[]>([]);
   const [notableQuotes, setNotableQuotes] = useState<string[]>([]);
+  const [jobOpportunities, setJobOpportunities] = useState<string[]>([]);
   const [heading, setHeading] = useState("");
   const [subheading, setSubheading] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -56,7 +58,7 @@ export default function Home() {
     try {
       const response = await axios.post("/api/analyze", {
         resume: resumeText,
-        job: "Frontend Developer with React and TypeScript",
+        job: jobDesc || "Frontend Developer with React and TypeScript",
       });
 
       const data = response.data;
@@ -64,13 +66,13 @@ export default function Home() {
       // Set heading and subheading for both resume and generic PDF
       setHeading(data.heading || (data.score ? "Unknown Candidate" : "Untitled Document"));
       setSubheading(data.subheading || (data.score ? "Unknown Profession" : "General Overview"));
-
       if ("score" in data) {
         setIsResume(true);
         setScore(data.score || 0);
         setImprovements(data.improvements || []);
         setImprovedResume(data.improvedResume || "");
-        setSummary("");
+        setSummary(data.summary || "");
+        setJobOpportunities(data.jobOpportunities || []);
         setKeyTakeaways([]);
         setNotableQuotes([]);
         toast.success("Resume analysis complete!", { id: toastId });
@@ -80,6 +82,7 @@ export default function Home() {
         setImprovements([]);
         setImprovedResume("");
         setSummary(data.summary || "");
+        setJobOpportunities([]);
         setKeyTakeaways(data.keyTakeaways || []);
         setNotableQuotes(data.notableQuotes || []);
         toast.success("Document summary generated!", { id: toastId });
@@ -101,12 +104,16 @@ export default function Home() {
       <Container>
         <FadeInUp delay={0.1}>
           <Hero
+            heading={heading}
+            subheading={subheading}
             analyze={analyze}
             resumeText={resumeText}
             setResumeText={setResumeText}
             isResume={isResume}
             setIsResume={setIsResume}
             isAnalyzing={isAnalyzing}
+            jobDesc={jobDesc}
+            setJobDesc={setJobDesc}
           />
         </FadeInUp>
 
@@ -125,6 +132,7 @@ export default function Home() {
             summary={summary}
             keyTakeaways={keyTakeaways}
             notableQuotes={notableQuotes}
+            jobOpportunities={jobOpportunities}
           />
         </FadeInUp>
       </Container>

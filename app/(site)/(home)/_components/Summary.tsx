@@ -17,6 +17,7 @@ interface SummaryProps {
   summary: string;
   keyTakeaways: string[];
   notableQuotes: string[];
+  jobOpportunities: string[];
 }
 
 export default function Summary({
@@ -29,13 +30,14 @@ export default function Summary({
   summary,
   keyTakeaways,
   notableQuotes,
+  jobOpportunities
 }: SummaryProps) {
   return (
     <section id="summary" className="py-12 sm:py-16 md:py-24 my-16 sm:my-20 md:my-28">
       <div className="container mx-auto px-4 sm:px-10">
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-[2.8rem] font-bold font-heading mb-4 relative pb-2">
-            {isResume ? 'Resume Analysis' : 'Your Personalized Book Summary'}
+            Your Personalized Book Summary
             <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-1 bg-accent rounded"></span>
           </h2>
           <p className="section-subtitle text-base sm:text-lg md:text-xl text-muted-foreground pt-4">
@@ -89,14 +91,14 @@ export default function Summary({
                     </div>
                   )}
                   {isResume && (
-                    <p className="text-sm sm:text-base text-accent">
+                    <p className="text-lg text-accent font-bold">
                       Score: {score !== null ? `${score}/100` : 'Not available'}
                     </p>
                   )}
                 </div>
               </div>
               <p className="text-muted-foreground mb-4 sm:mb-6 text-lg font-bold">
-                {isResume ? 'Resume Analysis Results' : summary || "A revolutionary guide to building good habits and breaking bad ones. James Clear reveals practical strategies for forming habits that stick and creating systems for continuous improvement."}
+                {summary || "A revolutionary guide to building good habits and breaking bad ones. James Clear reveals practical strategies for forming habits that stick and creating systems for continuous improvement."}
               </p>
               <Accordion type="single" collapsible className="mb-4 sm:mb-6 space-y-4">
                 <AccordionItem
@@ -127,11 +129,21 @@ export default function Summary({
                   className="bg-slate-900/40 hover:bg-slate-50/5 p-2 px-8 border border-[rgba(148,163,184,0.1)] rounded-xl"
                 >
                   <AccordionTrigger className="text-sm sm:text-base">
-                    Notable Quotes
+                    {isResume ? 'Job Opportunities' : 'Notable Quotes'}
                   </AccordionTrigger>
                   <AccordionContent>
                     {isResume ? (
-                      <p className="text-sm sm:text-base">Not applicable for resume analysis.</p>
+                      jobOpportunities.length > 0 ? (
+                        jobOpportunities.map((job, index) => (
+                          <div key={index} className='key-takeaways'>
+                            <p className="italic py-1 sm:py-2 text-sm sm:text-base">
+                              &quot;{job}&quot;
+                            </p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-sm sm:text-base">Not applicable for resume analysis.</p>
+                      )
                     ) : notableQuotes.length > 0 ? (
                       notableQuotes.map((quote, index) => (
                         <div key={index} className='key-takeaways'>
@@ -139,7 +151,6 @@ export default function Summary({
                             &quot;{quote}&quot;
                           </p>
                         </div>
-
                       ))
                     ) : (
                       <p className="text-sm sm:text-base">No notable quotes available.</p>
