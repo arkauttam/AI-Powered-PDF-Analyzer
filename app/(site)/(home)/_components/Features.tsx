@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Sparkles, Key, Shield, Brain, Laptop, BarChart } from 'lucide-react';
 
 export default function Features() {

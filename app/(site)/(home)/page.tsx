@@ -107,12 +107,9 @@ export default function Home() {
             heading={heading}
             subheading={subheading}
             analyze={analyze}
-            resumeText={resumeText}
             setResumeText={setResumeText}
-            isResume={isResume}
             setIsResume={setIsResume}
             isAnalyzing={isAnalyzing}
-            jobDesc={jobDesc}
             setJobDesc={setJobDesc}
           />
         </FadeInUp>

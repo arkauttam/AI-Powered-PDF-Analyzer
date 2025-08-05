@@ -1,17 +1,15 @@
-import { Sparkles, Info, Upload } from 'lucide-react';
+import { Sparkles, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useState } from 'react';
 import ResumeUpload from '@/components/ResumeUpload';
+import { useRouter } from 'next/navigation';
 
 export default function Hero({
     analyze,
-    resumeText,
     setResumeText,
-    isResume,
     setIsResume,
     isAnalyzing,
-    jobDesc,
     setJobDesc,
     heading,
     subheading
@@ -19,26 +17,13 @@ export default function Hero({
     heading: string;
     subheading: string;
     analyze: () => void;
-    resumeText: string;
     setResumeText: (text: string) => void;
-    isResume: boolean;
     setIsResume: (isResume: boolean) => void;
     isAnalyzing: boolean;
-    jobDesc: string;
     setJobDesc: (job: string) => void;
 }) {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file && file.type === 'application/pdf') {
-            setSelectedFile(file);
-        } else {
-            setSelectedFile(null);
-            alert('Please select a valid PDF file.');
-        }
-    };
-
+    const router = useRouter();
     return (
         <section className="px-4 sm:px-6 hero min-h-screen flex items-center py-24 md:py-12 my-20 bg-gradient-to-br from-background via-background to-[rgba(59,130,246,0.1)] dark:to-[rgba(124,58,237,0.1)]">
             <div className="container mx-auto flex flex-col sm:flex-col lg:flex-row items-center gap-8 md:gap-16 justify-between">
@@ -73,7 +58,7 @@ export default function Hero({
                                 />
                             </PopoverContent>
                         </Popover>
-                        <Button size="xl" variant="outline" className="gap-2 text-lg">
+                        <Button size="xl" variant="outline" className="gap-2 text-lg" onClick={() => router.push("/#features")}>
                             <Info className="w-5 h-5" />
                             Learn More
                         </Button>

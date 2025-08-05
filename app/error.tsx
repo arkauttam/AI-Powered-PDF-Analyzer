@@ -19,7 +19,7 @@ export default function Error({
         <AlertDescription>{error.message}</AlertDescription>
         <AlertDescription>{error.stack}</AlertDescription>
       </Alert>
-      <Button variant="destructive" onClick={() => reset()}>
+      <Button variant="default" onClick={() => reset()}>
         Try again
       </Button>
     </div>
