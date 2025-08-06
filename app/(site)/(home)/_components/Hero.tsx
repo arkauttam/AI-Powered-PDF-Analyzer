@@ -25,7 +25,7 @@ export default function Hero({
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const router = useRouter();
     return (
-        <section className="px-4 sm:px-6 hero min-h-screen flex items-center py-24 md:py-12 my-20 bg-gradient-to-br from-background via-background to-[rgba(59,130,246,0.1)] dark:to-[rgba(124,58,237,0.1)]">
+        <section className="px-4 sm:px-6 hero min-h-screen flex items-center py-24 md:py-12 my-20">
             <div className="container mx-auto flex flex-col sm:flex-col lg:flex-row items-center gap-8 md:gap-16 justify-between">
                 <div className="flex-1 text-center lg:text-left max-w-2xl">
                     <h1 className="text-[2.8rem] md:text-[3.8rem] font-bold font-heading mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">

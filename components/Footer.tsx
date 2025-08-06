@@ -21,9 +21,10 @@ export default function Footer() {
     <footer className="pt-24 pb-14 bg-[#0c1324] relative border-t border-[rgba(148,163,184,0.1)] w-full">
       <div className="container flex flex-wrap gap-12 mb-16 footer-grid">
         <div className="max-w-xs">
-          <div className="flex items-center gap-2 text-2xl font-bold mb-6 font-sans">
+          <div className="relative flex items-center gap-2 text-2xl font-bold mb-6 font-sans z-50">
             <BookIcon />
           </div>
+
           <p className="text-slate-200 mb-6">
             Harness the power of AI to transform your reading experience. Get instant insights from any book.
           </p>

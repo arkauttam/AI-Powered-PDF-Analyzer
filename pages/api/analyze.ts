@@ -1,4 +1,3 @@
-import dbConnect from "@/lib/mongodb";
 import Resume from "@/models/Resume";
 import { analyzeDocument } from "@/lib/langchain";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -24,17 +23,17 @@ export default async function handler(
     }
 
     // Connect to DB
-    await dbConnect();
+    // await dbConnect();
 
     // Analyze the resume
     const result = await analyzeDocument(resume, job);
 
     // Save to MongoDB
-    await Resume.create({
-      resumeText: resume,
-      jobDescription: job,
-      ...result,
-    });
+    // await Resume.create({
+    //   resumeText: resume,
+    //   jobDescription: job,
+    //   ...result,
+    // });
 
     return res.status(200).json(result);
   } catch (err: any) {

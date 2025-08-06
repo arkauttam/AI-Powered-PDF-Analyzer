@@ -45,7 +45,7 @@ export default function Summary({
               : 'Experience how BookAI Pro transforms lengthy books into concise, actionable insights.'}
           </p>
         </div>
-        <div className="summary-container gap-6 items-center justify-between w-full px-8">
+        <div className="summary-container gap-6 items-center justify-between w-full sm:px-8 px-0">
           <div className="summary-visual w-full md:w-1/2 max-w-md hidden lg:block ">
             <div className="book-container">
               <div className="book">
