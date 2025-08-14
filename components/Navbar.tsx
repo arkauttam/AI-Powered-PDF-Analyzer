@@ -98,6 +98,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             variant="outline"
             onClick={() => setIsOpen(false)}
             className="w-full sm:w-auto sm:hidden block"
+            disabled
           >
             Login
           </Button>
@@ -106,6 +107,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             variant="primary"
             onClick={() => setIsOpen(false)}
             className="w-full sm:w-auto sm:hidden block"
+            disabled
           >
             Sign Up
           </Button>
@@ -117,6 +119,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             variant="outline"
             onClick={() => setIsOpen(false)}
             className="w-full sm:w-auto hidden sm:block"
+            disabled
           >
             Login
           </Button>
@@ -125,6 +128,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             variant="primary"
             onClick={() => setIsOpen(false)}
             className="w-full sm:w-auto hidden sm:block"
+            disabled
           >
             Sign Up
           </Button>

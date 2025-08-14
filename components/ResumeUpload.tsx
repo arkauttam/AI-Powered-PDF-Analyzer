@@ -21,7 +21,6 @@ export default function ResumeUpload({
   const [isUploaded, setIsUploaded] = useState(false);
 
   const extractJobDescription = (text: string): string => {
-    // Simple keyword-based extraction for job description
     const jobKeywords = ["job description", "position", "role", "title", "career objective"];
     const lines = text.split('\n');
     for (const line of lines) {
@@ -30,7 +29,6 @@ export default function ResumeUpload({
         return line.trim();
       }
     }
-    // Fallback to common job titles or first line if no keywords found
     const commonJobTitles = ["developer", "engineer", "manager", "analyst", "designer"];
     for (const line of lines) {
       if (commonJobTitles.some(title => line.toLowerCase().includes(title))) {

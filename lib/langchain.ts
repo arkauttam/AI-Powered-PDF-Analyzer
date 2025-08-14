@@ -13,7 +13,6 @@ export async function analyzeDocument(text: string, jobDesc?: string) {
   let prompt = "";
 
   if (isResume && jobDesc) {
-    // Resume analysis prompt with focus on projects, skills, name, and profession
     prompt = `
 You are a resume analysis assistant. Respond ONLY with a valid JSON object, nothing else.
 The format should be:
@@ -43,7 +42,6 @@ Job description:
 ${jobDesc}
 `;
   } else {
-    // Generic PDF summarization prompt with document title, subheading, and notable quotes
     prompt = `
 You are a document summarization assistant.
 Summarize the document in a concise paragraph under a "Summary" section.
@@ -67,7 +65,6 @@ ${text}
 
   const result = await model.invoke([new HumanMessage(prompt)]);
 
-  // Extract text safely
   const raw =
     result.text ||
     (Array.isArray(result.content) &&
@@ -77,7 +74,6 @@ ${text}
       : "") ||
     "";
 
-  // Extract JSON using regex
   const match = raw.match(/\{[\s\S]*\}/);
   if (!match) {
     return isResume

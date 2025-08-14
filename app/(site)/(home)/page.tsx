@@ -63,7 +63,6 @@ export default function Home() {
 
       const data = response.data;
 
-      // Set heading and subheading for both resume and generic PDF
       setHeading(data.heading || (data.score ? "Unknown Candidate" : "Untitled Document"));
       setSubheading(data.subheading || (data.score ? "Unknown Profession" : "General Overview"));
       if ("score" in data) {

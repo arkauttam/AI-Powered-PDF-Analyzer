@@ -22,13 +22,10 @@ export default async function handler(
       return res.status(400).json({ error: "Missing resume or job description" });
     }
 
-    // Connect to DB
     // await dbConnect();
 
-    // Analyze the resume
     const result = await analyzeDocument(resume, job);
 
-    // Save to MongoDB
     // await Resume.create({
     //   resumeText: resume,
     //   jobDescription: job,

@@ -29,19 +29,40 @@ export default function Footer() {
             Harness the power of AI to transform your reading experience. Get instant insights from any book.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="social-link">
+            <a
+              href="https://www.linkedin.com/in/uttam-ghosh-7187a2258/"
+              className="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <BrandTwitter />
             </a>
-            <a href="#" className="social-link">
+            <a
+              href="https://www.linkedin.com/in/uttam-ghosh-7187a2258/"
+              className="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <BrandLinkedin />
             </a>
-            <a href="#" className="social-link">
+            <a
+              href="https://www.linkedin.com/in/uttam-ghosh-7187a2258/"
+              className="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <BrandInstagram />
             </a>
-            <a href="#" className="social-link">
+            <a
+              href="https://www.linkedin.com/in/uttam-ghosh-7187a2258/"
+              className="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <BrandGithub />
             </a>
           </div>
+
         </div>
 
         {footerLinks.map((section, index) => (
@@ -64,7 +85,18 @@ export default function Footer() {
 
       <div className="pt-8 border-t border-slate-800 text-center text-slate-200 text-sm">
         <p>
-          &copy; 2025 <span className='font-bold'>BookAI</span> <span className="text-accent">Pro</span>. All rights reserved. | <a href="#" className="hover:text-accent">Privacy Policy</a> | <a href="#" className="hover:text-accent">Terms of Service</a>
+          &copy; 2025 <span className='font-bold'>BookAI</span> <span className="text-accent">Pro</span>. All rights reserved. | 
+          
+          <a
+            href="https://www.linkedin.com/in/uttam-ghosh-7187a2258/"
+            className="social-link text-accent pl-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+             Uttam Ghosh
+          </a> | 
+
+          <a href="#" className="hover:text-accent"> Privacy Policy</a> | <a href="#" className="hover:text-accent">Terms of Service</a>
         </p>
       </div>
     </footer>
